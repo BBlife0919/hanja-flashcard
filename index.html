@@ -125,6 +125,7 @@ function renderAuth(){var isS=authMode==='signup';
   +(isS?'<input id="f_name" placeholder="이름" autocomplete="off">':'')
   +'<input id="f_id" placeholder="아이디" autocapitalize="off" autocomplete="off">'
   +'<input id="f_pw" type="password" placeholder="비밀번호">'
+  +'<div class="anote">📌 여러 기기에서 학습 이력을 이어가려면 로그인 서버가 필요해서 가입을 받습니다. 이메일·전화번호 등 개인정보는 일절 수집·취급하지 않으니 안심하세요.</div>'
   +'<div class="aerr" id="f_err"></div>'
   +'<button class="big navy" style="margin-top:6px" onclick="doAuth()">'+(isS?'가입하고 시작하기':'로그인')+'</button>'
   +'<div class="ahint">'+(isS?'이름·아이디·비번만 입력하면 승인 없이 바로 가입돼요.':'계정이 없으면 위 [가입] 탭에서 먼저 가입하세요.')+'</div>'
