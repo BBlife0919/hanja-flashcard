@@ -59,7 +59,6 @@ const TIGER = "iVBORw0KGgoAAAANSUhEUgAAAfQAAAKhCAYAAACmfVxTAAD8GElEQVR4nOydBViV5
 const CHOS = ["ㄱ","ㄴ","ㄷ","ㄹ","ㅁ","ㅂ","ㅅ","ㅆ","ㅇ","ㅈ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"];
 const BYH={}; DATA.forEach(d=>BYH[d.h]=d);
 const LS='hanja_flash_v1'; let MODE='local';
-const PDFURL='https://bblife0919.github.io/hanja-flashcard/hanja-exam-prep.pdf';
 let S={prog:{},bm:null}, SESS=null, REVEALED=false, wfCho=null, wfStage=null;
 
 async function loadState(){
@@ -125,11 +124,10 @@ function renderMain(){
  h+=`<div class="panel"><h2>📖 플래시카드 사용법</h2><ol class="howto">
    <li>메인에서 <b>초성(ㄱ~ㅎ) 챕터</b>를 골라 학습을 시작합니다.</li>
    <li>한자를 보고 뜻·음을 떠올린 뒤 <b>「정답 보기」</b>(스페이스/엔터)를 누르면 훈음과 연상법 스토리가 나옵니다.</li>
-   <li>맞혔으면 <b>O(정답)</b>, 틀렸으면 <b>X(오답)</b>, 헷갈리면 <b>△(아리송)</b> (키보드 1·2·3).</li>
+   <li>맞혔으면 <b>O</b>, 헷갈리면 <b>△(아리송)</b>, 틀렸으면 <b>X</b> (키보드 1·3·2).</li>
    <li>틀린 한자는 <b>오답노트</b>에 단계별(1~5차)로 쌓이고, 한 단계에서 <b>연속 2번</b> 맞혀야 졸업합니다. (△는 정답이되 연속 횟수를 0으로)</li>
    <li>카드 우상단 <b>🏷️ 책갈피</b>를 누르면 메인의 <b>「이어보기」</b>로 그 자리로 바로 옵니다.</li>
    <li>학습 상태는 <b>자동 저장</b>됩니다(이 기기·브라우저에 개인별로 저장).</li></ol></div>`;
- h+=`<a class="big gold" style="text-decoration:none;display:block;text-align:center;margin-top:16px" href="${PDFURL}" download="고려대_한자이해능력인증시험_대비.pdf">📄 시험대비자료 PDF 다운로드</a>`;
  h+=`<div class="link" onclick="resetAll()">전체 진도 초기화</div>`;
  h+=`<div class="foot">Copyright ⓒ Youngwoo Lee. All Rights Reserved</div>`;
  document.getElementById('app').innerHTML=h;
@@ -158,7 +156,7 @@ function renderCard(){
  if(!REVEALED){html+=`<button class="big gold" style="max-width:280px" onclick="reveal()">정답 보기</button><div class="hint">스페이스 / 엔터로 정답 확인</div></div>`;}
  else{const m=d.m.replace(/'([^']+)'/g,'<span class="hl">$1</span>');
    html+=`<div class="reveal"><div class="hun">${d.hun} <span class="e">${d.eum}</span>${d.star?' ★':''}</div><div class="story">${m}</div>
-   <div class="oxm"><button class="o" onclick="ans('O')">O<small>정답 (1)</small></button><button class="x" onclick="ans('X')">X<small>오답 (2)</small></button><button class="m" onclick="ans('M')">△<small>아리송 (3)</small></button></div></div></div>`;}
+   <div class="oxm"><button class="o" onclick="ans('O')">O<small>맞춤 (1)</small></button><button class="m" onclick="ans('M')">△<small>아리송 (3)</small></button><button class="x" onclick="ans('X')">X<small>틀림 (2)</small></button></div></div></div>`;}
  document.getElementById('app').innerHTML=html;
 }
 function reveal(){REVEALED=true;renderCard();}
